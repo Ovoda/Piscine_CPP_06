@@ -1,5 +1,7 @@
 # include <iostream>
 # include <string>
+# include <math.h>
+# include <cmath>
 
 
 int main( int argc, char **argv )
@@ -21,7 +23,10 @@ int main( int argc, char **argv )
 	// Character cast
 	c = static_cast<char>(d);
 	std::cout << "char : ";
-	if (!isascii(c))
+	if (!isascii(c)
+		|| c < std::numeric_limits<char>::min()
+		|| c > std::numeric_limits<char>::max()
+		|| std::isnan(d))
 		std::cout << "impossible" << std::endl;
 	else if (!isprint(c))
 		std::cout << "Non displayable" << std::endl;
@@ -29,17 +34,27 @@ int main( int argc, char **argv )
 		std::cout << "'" << c << "'" << std::endl;
 
 	// Integer cast
+	std::cout << "int : ";
 	i = static_cast<int>(d);
-	if (d > std::numeric_limits<int>::max())
-		std::cout << "Not possible" << std::endl;
+	if (static_cast<long long>(d) > std::numeric_limits<int>::max()
+		 || static_cast<long long>(d) < std::numeric_limits<int>::min())
+		std::cout << "impossible" << std::endl;
 	else
 		std::cout << i << std::endl;
 
 	// Float cast
+	std::cout << "float : ";
 	f = static_cast<float>(d);
-	std::cout << std::showpoint << f << "f" << std::endl;
+	if (fmod(f, 1) == 0)
+		std::cout << f << ".0f" << std::endl;
+	else
+		std::cout << f << "f" << std::endl;
 	
 	// Double output
-	std::cout << d << std::endl;
+	std::cout << "double : ";
+	if (fmod(d, 1) == 0)
+		std::cout << d << ".0" << std::endl;
+	else
+		std::cout << d << std::endl;
 	return (0);
 }
