@@ -1,0 +1,1 @@
+Article about c++ differents types of cast : https://www.cplusplus.com/doc/tutorial/typecasting/
