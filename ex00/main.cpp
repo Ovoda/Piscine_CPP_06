@@ -1,5 +1,5 @@
 #include <math.h>
-
+#include <limits>
 #include <cmath>
 #include <iostream>
 #include <string>
@@ -30,7 +30,7 @@ int main(int argc, char **argv) {
     if ((is_except(arg) || is_only_digit(arg)) &&
         !(arg.size() == 1 &&
           (arg[0] == 'f' || arg[0] == '.' || arg[0] == '-'))) {
-        d = stod(arg);
+       	d = strtold( arg.c_str(), NULL );
         c = static_cast<char>(d);
         i = static_cast<int>(d);
         f = static_cast<float>(d);
