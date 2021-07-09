@@ -1,35 +1,35 @@
 #ifndef DATA_HPP
-# define DATA_HPP
+#define DATA_HPP
 
-# include <iostream>
-# include <string>
+#include <iostream>
+#include <string>
 
 class Data {
-	public:
-		// Constructors
-		Data( void ) : _value(42) {}
-		Data( Data & src ) { *this = src; }
-		
-		// Destructor
-		~Data() {}
+   public:
+    // Constructors
+    Data(void) : _value(42) {}
+    Data(Data &src) { *this = src; }
 
-		// Overload
-		Data	&operator=( Data & rhs ) { 
-			if (this != &rhs)
-				_value = rhs._value;
-			return (*this); 
-		}
+    // Destructor
+    ~Data() {}
 
-		// Getters
-		int	getValue( void ) const { return _value; }
+    // Overload
+    Data &operator=(Data &rhs) {
+        if (this != &rhs) _value = rhs._value;
+        return (*this);
+    }
 
-	private:
-		int	_value;
+    // Getters
+    int getValue(void) const { return _value; }
+
+   private:
+    int _value;
 };
 
-std::ostream &			operator<<( std::ostream & o, Data const & i ) {
-	o << i.getValue();
-	return (o);
+std::ostream &operator<<(std::ostream &o, Data const &i) {
+    o << i.getValue();
+    return (o);
 }
 
-#endif /* ************************************************************ DATA_H */
+#endif /* ************************************************************ DATA_H \
+        */
